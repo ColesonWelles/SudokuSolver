@@ -28,16 +28,16 @@ def possible(y,x,n):
   """
   global grid
   for i in range(0,9):
-    if grid[y][i] == n:
+    if grid[x][i] == n:
       return False
   for i in range(0,9):
-    if grid[i][x] == n:
+    if grid[i][y] == n:
       return False
   x0 = (x//3)*3
   y0 = (y//3)*3
   for i in range (0,3):
     for j in range(0,3):
-      if grid[y0+i][x0+j] == n:
+      if grid[x0+j][y0+i] == n:
         return False
   return True
 
@@ -46,14 +46,14 @@ def solve():
   Recursively iterates over soduko grid until a completely legal completed board is achieved. 
   """
   global grid
-  for y in range (9): 
-    for x in range(9):
-      if grid[y][x] == 0:
+  for x in range (9): 
+    for y in range(9):
+      if grid[x][y] == 0:
         for n in range(1,10):
-          if possible(y,x,n):
-            grid[y][x] = n 
+          if possible(x,y,n):
+            grid[x][y] = n 
             solve()
-            grid[y][x] = 0
+            grid[x][y] = 0
         return 
   print(np.matrix(grid))
   input('Additional Solutions?')
