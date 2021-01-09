@@ -4,7 +4,12 @@ to be solved. Uses 0's to represent unknown values.
 '''
 
 import numpy as np
+
 def input_grid():
+  """ 
+  Saves a user entered sodoku grid of 9x9 integers, 
+  one line at a time, and returns a soduku grid 
+  """
   grid = []
   print("Enter each line without spaces, using 0 for unknown values")
   for i in range(1,10):
@@ -18,6 +23,9 @@ def input_grid():
 grid = input_grid()
 
 def possible(y,x,n):
+  """ 
+  Returns if a given value and grid position is a legal entry 
+  """
   global grid
   for i in range(0,9):
     if grid[y][i] == n:
@@ -34,6 +42,9 @@ def possible(y,x,n):
   return True
 
 def solve():
+  """ 
+  Recursively iterates over soduko grid until a completely legal completed board is achieved. 
+  """
   global grid
   for y in range (9): 
     for x in range(9):
